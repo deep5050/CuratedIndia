@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See My India | Admin Panel</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-primary: #e6edf3;
+            --accent-color: #58a6ff;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input[type="text"], textarea, select {
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: #010409;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .drop-zone.dragover {
+            background: rgba(88, 166, 255, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        button {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #1f6feb;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>✨ Add a New Place</h2>
+        <form id="placeForm">
+            <div class="form-group">
+                <label>State</label>
+                <input type="text" id="state" name="state" placeholder="e.g. Maharashtra" required>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="isParent" name="isParent" value="true">
+                <label for="isParent">Is this a Parent Place? (Generates a sub-page)</label>
+            </div>
+
+            <div class="form-group">
+                <label>Parent Place Name (Optional - if this is a sub-place)</label>
+                <input type="text" id="parentPlaceName" name="parentPlaceName" placeholder="e.g. Mahabalipuram">
+            </div>
+
+            <div class="form-group">
+                <label>Place Name</label>
+                <input type="text" id="name" name="name" placeholder="e.g. Gateway of India" required>
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="description" name="description" rows="3" placeholder="A brief description..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Note (Optional)</label>
+                <input type="text" id="note" name="note" placeholder="Interesting fact...">
+            </div>
+
+            <div class="form-group">
+                <label>Google Maps Link</label>
+                <input type="text" id="google_link" name="google_link" placeholder="https://maps.app.goo.gl/...">
+            </div>
+
+            <div class="form-group">
+                <label>Extra Body Content (Optional Markdown)</label>
+                <textarea id="body" name="body" rows="4" placeholder="Extended history or details..."></textarea>
+            </div>
+
+            <div class="drop-zone" id="dropZone">
+                <span id="dropText">Drag & Drop an image here, or click to select</span>
+                <input type="file" id="imageInput" name="image" accept="image/*" style="display: none;">
+            </div>
+
+            <button type="submit">Create Place</button>
+        </form>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const imageInput = document.getElementById('imageInput');
+        const dropText = document.getElementById('dropText');
+        const placeForm = document.getElementById('placeForm');
+
+        // Drag and drop mechanics
+        dropZone.addEventListener('click', () => imageInput.click());
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+        
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                imageInput.files = e.dataTransfer.files;
+                dropText.textContent = e.dataTransfer.files[0].name;
+            }
+        });
+
+        imageInput.addEventListener('change', () => {
+            if (imageInput.files.length) {
+                dropText.textContent = imageInput.files[0].name;
+            }
+        });
+
+        placeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(placeForm);
+
+            try {
+                const response = await fetch('/api/places', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert('Place added successfully! Do not forget to run "npm run build" to update the website.');
+                    placeForm.reset();
+                    dropText.textContent = 'Drag & Drop an image here, or click to select';
+                } else {
+                    alert(result.error);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Failed to submit the form.');
+            }
+        });
+    </script>
+</body>
+</html>

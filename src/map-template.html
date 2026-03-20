@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India: Curated</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            /* fallback */
+            font-family: 'Inter', sans-serif;
+        }
+
+        .map-layout {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Responsive breakdown */
+        @media (max-width: 1024px) {
+            body {
+                height: auto;
+                overflow: auto;
+                min-height: 100vh;
+            }
+
+            .map-layout {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .map-container svg {
+                height: auto !important;
+                width: 100% !important;
+                max-height: 60vh;
+            }
+
+            .info-section {
+                text-align: center !important;
+                flex: auto !important;
+                padding: 0 !important;
+            }
+
+            header {
+                text-align: center !important;
+            }
+
+            nav {
+                justify-content: center !important;
+            }
+
+            .hero-description {
+                text-align: justify;
+                margin: 0 auto 2rem auto;
+            }
+
+            .stats-container {
+                justify-content: center;
+            }
+
+            .postcard {
+                transform: none !important;
+                padding: 2rem !important;
+            }
+        }
+
+        .map-section {
+            flex: 1 1 55%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+        }
+
+        .map-container {
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .map-container svg {
+            height: 85vh;
+            width: auto;
+            max-width: 100%;
+            filter: drop-shadow(0px 15px 35px rgba(0, 0, 0, 0.8));
+        }
+
+        .info-section {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            perspective: 1000px;
+        }
+
+        .postcard {
+            /* background: #fdfaf6; */
+            border-radius: 6px;
+            padding: 3.5rem 3rem 2.5rem;
+            box-shadow: 15px 25px 50px rgba(0, 0, 0, 0.7);
+            position: relative;
+            max-width: 420px;
+            transform: rotate(3deg);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #212121;
+        }
+
+        .postcard:hover {
+            transform: rotate(0deg) translateY(-8px);
+            box-shadow: 15px 35px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .postcard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: repeating-linear-gradient(45deg, #d32f2f, #d32f2f 15px, #fdfaf6 15px, #fdfaf6 30px, #1976d2 30px, #1976d2 45px, #fdfaf6 45px, #fdfaf6 60px);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .postcard-stamp {
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            width: 60px;
+            height: 70px;
+            background: #f4e9db;
+            border: 2px dashed #c4a98a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #8fa08e;
+            font-weight: 800;
+            transform: rotate(12deg);
+        }
+
+        .postcard-stamp::after {
+            content: '₹10';
+            position: absolute;
+            top: auto;
+            bottom: 4px;
+            text-align: center;
+            opacity: 0.4;
+            font-size: 0.65rem;
+        }
+
+        header {
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            text-align: left !important;
+            display: block !important;
+        }
+
+        .logo h1 {
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+            color: #1a0f0c;
+            font-weight: 900;
+            letter-spacing: -2px;
+        }
+
+        .logo p.subtitle {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #d32f2f;
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: none;
+            margin-top: 5px;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button.primary {
+            background: var(--accent-color);
+            color: #1a0f0c !important;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(255, 153, 51, 0.3);
+            text-shadow: none !important;
+            font-weight: 800;
+        }
+
+        .nav-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 153, 51, 0.5);
+            background: transparent;
+            color: var(--accent-color) !important;
+        }
+
+        /* Map styling */
+        .map-container svg path {
+            fill: rgba(255, 240, 212, 0.08);
+            stroke: var(--accent-color);
+            stroke-width: 0.8px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .map-container svg path:hover {
+            fill: var(--accent-color);
+            stroke-width: 1.5px;
+            filter: drop-shadow(0 0 10px rgba(255, 153, 51, 0.6));
+            outline: none;
+        }
+
+        #tooltip {
+            display: none;
+            position: fixed;
+            background: rgba(26, 15, 12, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 100;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 153, 51, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+
+        .tooltip-subtitle {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .creator-stamp {
+            position: fixed;
+            bottom: 20px;
+            right: 25px;
+            font-family: 'Caveat', cursive;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            z-index: 100;
+            opacity: 0.8;
+        }
+        .creator-stamp:hover {
+            color: #d32f2f;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+    <div id="tooltip"></div>
+
+    <div class="map-layout">
+        <div class="map-section">
+            <div class="map-container">
+                {{MAP_SVG}}
+            </div>
+        </div>
+        <div class="info-section">
+            <div class="postcard">
+                <div class="postcard-stamp">IND</div>
+                <header>
+                    <div class="logo">
+                        <h1>India:<br>Curated.</h1>
+                        <p class="subtitle">Wish you were here...</p>
+                    </div>
+
+                    <p class="hero-description">
+                        Embark on an interactive journey through the vibrant colors, ancient heritage, and breathtaking
+                        landscapes of India. Hover over any outline and discover perfectly curated postcard destinations
+                        you absolute must see in your lifetime!
+                    </p>
+
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number">36</span>
+                            <span class="stat-label">States & UTs</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Destinations</span>
+                        </div>
+                    </div>
+
+                    <!-- <nav>
+                        <a href="places.html" class="nav-button primary">Explore All Places</a>
+                        <a href="admin/public/index.html" style="color:#aaa; font-weight:600; text-decoration:none; font-size:0.85rem; margin-left:auto;">Admin</a>
+                    </nav> -->
+                </header>
+            </div>
+        </div>
+    </div>
+    
+    <a href="https://github.com/deep5050" target="_blank" class="creator-stamp">
+        Curated with ❤️ for India by Dipankar Pal.
+    </a>
+    <script>
+        document.querySelectorAll('.map-container svg path').forEach(path => {
+            const stateName = path.getAttribute('name') || path.getAttribute('aria-label');
+            path.addEventListener('click', () => {
+                if (stateName) window.location.href = 'places.html?state=' + encodeURIComponent(stateName);
+            });
+            path.addEventListener('mousemove', (e) => {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'block';
+                tooltip.style.left = (e.clientX + 15) + 'px';
+                tooltip.style.top = (e.clientY + 15) + 'px';
+                tooltip.innerHTML = `${stateName}<span class="tooltip-subtitle">Click to view places</span>`;
+            });
+            path.addEventListener('mouseleave', () => {
+                document.getElementById('tooltip').style.display = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>
