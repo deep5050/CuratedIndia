@@ -1,6 +1,7 @@
 # Tiger Hill
+![Tiger-Hill](https://github.com/user-attachments/assets/b2e51fe8-84db-4ad2-a911-38c65f310cc8)
 
-![Tiger Hill](assets/images/tiger-hill.jpg)
+
 
 The highest point in Darjeeling offering a majestic panoramic view of Mount Everest and Mt. Kanchenjunga.
 
