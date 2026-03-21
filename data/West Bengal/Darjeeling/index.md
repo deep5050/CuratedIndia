@@ -8,4 +8,5 @@ A spectacularly picturesque hill station in the Himalayan foothills known for it
 
 [Google Maps link](https://maps.app.goo.gl/DarjeelingTown)
 
-Welcome to beautiful Darjeeling. It boasts sweeping views of Mt. Kanchenjunga and the world-famous Darjeeling Himalayan Railway. Here are its must-visit attractions!
+Welcome to beautiful Darjeeling. It boasts sweeping views of Mt. Kanchenjunga and the world-fa
+mous Darjeeling Himalayan Railway. Here are its must-visit attractions!

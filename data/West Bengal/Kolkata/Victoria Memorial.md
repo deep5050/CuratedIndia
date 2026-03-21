@@ -7,5 +7,3 @@ A large marble building in Kolkata, West Bengal, India, which was built between 
 **Note:** It is dedicated to the memory of Queen Victoria. Beautiful to visit in the evening.
 
 [Google Maps link](https://maps.app.goo.gl/victoria-memorial)
-
-It is now a museum and tourist destination under the Ministry of Culture.

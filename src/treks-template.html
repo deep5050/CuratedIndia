@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India: Popular Treks</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+        }
+
+        .nav-back-corner {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            color: #8fa08e;
+            text-decoration: none;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .nav-back-corner:hover {
+            color: #d32f2f;
+        }
+
+        header.hero {
+            padding: 5rem 2rem 2rem;
+            text-align: center;
+        }
+
+        header.hero h1 {
+            font-size: 3.5rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        header.hero p {
+            max-width: 600px;
+            margin: 1rem auto;
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: #d32f2f;
+        }
+
+        .treks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .trek-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .trek-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body.light-mode .trek-card {
+            background: #fdfaf6;
+        }
+        body:not(.light-mode) .trek-card {
+            background: #1e1e1e;
+        }
+
+        .trek-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .trek-content {
+            padding: 1.5rem;
+        }
+
+        .trek-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem 0;
+            color: var(--text-primary);
+        }
+
+        .trek-state {
+            font-size: 0.9rem;
+            color: #8fa08e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .trek-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .altitude-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+        .altitude-info {
+            flex-grow: 1;
+        }
+
+        .altitude-val {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+
+        .altitude-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.2rem;
+        }
+
+        .mountain-svg {
+            width: 60px;
+            height: 60px;
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            padding: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+    <a href="curated.html" class="nav-back-corner">&larr; Curated</a>
+    
+    <header class="hero">
+        <h1>Popular Treks</h1>
+        <p>Scale the heights of the magnificent Indian Himalayas</p>
+    </header>
+
+    <main>
+        <div class="treks-grid" id="treks-container">
+            <!-- Cards will be injected here -->
+        </div>
+    </main>
+
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+
+    <script>
+        const treks = {{TREKS_JSON}};
+        const container = document.getElementById('treks-container');
+        const MAX_ALTITUDE = 6000;
+
+        function renderTreks() {
+            container.innerHTML = treks.map(trek => {
+                const clipId = 'clip-' + trek.name.replace(/[^a-zA-Z0-9]/g, '');
+                const maxH = 70;
+                const h = Math.min((trek.altitude / MAX_ALTITUDE) * maxH, maxH);
+                const y = 90 - h;
+                
+                return `
+                <article class="trek-card">
+                    <img src="${trek.image}" alt="${trek.name}" class="trek-image" loading="lazy">
+                    <div class="trek-content">
+                        <h2 class="trek-title">${trek.name}</h2>
+                        <div class="trek-state">${trek.state}</div>
+                        <p class="trek-desc">${trek.desc}</p>
+                        <div class="altitude-section">
+                            <svg class="mountain-svg" viewBox="0 0 100 100">
+                                <defs>
+                                    <clipPath id="${clipId}">
+                                        <rect x="0" y="${y}" width="100" height="${h}" />
+                                    </clipPath>
+                                </defs>
+                                <!-- Background mountain -->
+                                <path d="M 10 90 L 50 20 L 90 90 Z" fill="rgba(128,128,128,0.15)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                                <!-- Filled mountain based on altitude -->
+                                <path d="M 10 90 L 50 20 L 90 90 Z" fill="var(--accent-color)" clip-path="url(#${clipId})"/>
+                                <!-- Snow cap pattern (decorative) -->
+                                <path d="M 50 20 L 40 34 L 45 38 L 50 32 L 55 38 L 60 34 Z" fill="#fff" opacity="0.9" />
+                            </svg>
+                            <div class="altitude-info">
+                                <div class="altitude-val">${trek.altitude}m</div>
+                                <div class="altitude-label">Max Altitude</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                `;
+            }).join('');
+        }
+
+        renderTreks();
+
+        // Theme toggle logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const toggleTheme = () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        };
+        themeBtn.addEventListener('click', toggleTheme);
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+</body>
+</html>

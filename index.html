@@ -7,7 +7,9 @@
     <title>India: Curated</title>
     <link rel="stylesheet" href="src/styles.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;600;800;900&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
     <style>
         body {
             height: 100vh;
@@ -118,7 +120,7 @@
             padding: 3.5rem 3rem 2.5rem;
             box-shadow: 15px 25px 50px rgba(0, 0, 0, 0.7);
             position: relative;
-            max-width: 420px;
+            max-width: 600px;
             transform: rotate(3deg);
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             color: #212121;
@@ -153,7 +155,7 @@
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
-            color: #8fa08e;
+            color: #252525;
             font-weight: 800;
             transform: rotate(12deg);
         }
@@ -200,7 +202,7 @@
 
         .hero-description {
             font-size: 1.05rem;
-            color: #444;
+            color: #c1bdbd;
             line-height: 1.7;
             margin-bottom: 2rem;
             font-weight: 400;
@@ -307,8 +309,6 @@
             position: fixed;
             bottom: 20px;
             right: 25px;
-            font-family: 'Caveat', cursive;
-            font-size: 1.25rem;
             font-weight: 700;
             color: #aaa;
             text-decoration: none;
@@ -316,9 +316,64 @@
             z-index: 100;
             opacity: 0.8;
         }
+
         .creator-stamp:hover {
             color: #d32f2f;
             opacity: 1;
+        }
+
+        .mini-postcard {
+            position: absolute;
+            right: -50px;
+            top: 25%;
+            transform: rotate(6deg);
+            background: #fdfaf6;
+            border-radius: 4px;
+            padding: 1.2rem 1rem 0.8rem 1.5rem;
+            box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.3);
+            color: #212121;
+            z-index: -1;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            border: 1px solid #e0d5c1;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .mini-postcard:hover {
+            transform: scale(1.05) rotate(12deg) translateY(-5px);
+            right: -90px;
+            z-index: 10;
+            box-shadow: 15px 25px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .mini-postcard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 6px;
+            background: repeating-linear-gradient(to bottom, #d32f2f, #d32f2f 10px, #fdfaf6 10px, #fdfaf6 20px, #1976d2 20px, #1976d2 30px, #fdfaf6 30px, #fdfaf6 40px);
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .mini-postcard h3 {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            margin: 0 0 0.5rem 0;
+            color: #d32f2f;
+            line-height: 1.1;
+        }
+
+        .mini-postcard p {
+            font-size: 0.8rem;
+            margin: 0;
+            font-weight: 800;
+            color: #1a0f0c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -550,13 +605,18 @@
                         <a href="admin/public/index.html" style="color:#aaa; font-weight:600; text-decoration:none; font-size:0.85rem; margin-left:auto;">Admin</a>
                     </nav> -->
                 </header>
+
+                <a href="curated.html" class="mini-postcard">
+                    <h3>Curated<br>Collections</h3>
+                    <p>Explore &rarr;</p>
+                </a>
             </div>
         </div>
     </div>
-    
-    <a href="https://github.com/deep5050" target="_blank" class="creator-stamp">
+
+    <!-- <a href="https://github.com/deep5050" target="_blank" class="creator-stamp">
         Curated with ❤️ for India by Dipankar Pal.
-    </a>
+    </a> -->
     <script>
         document.querySelectorAll('.map-container svg path').forEach(path => {
             const stateName = path.getAttribute('name') || path.getAttribute('aria-label');
@@ -574,6 +634,17 @@
                 document.getElementById('tooltip').style.display = 'none';
             });
         });
+    </script>
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
     </script>
 </body>
 

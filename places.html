@@ -11,25 +11,57 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
+    <style>
+        .nav-back-corner {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            color: #8fa08e;
+            text-decoration: none;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .nav-back-corner:hover {
+            color: #d32f2f;
+        }
+    </style>
 </head>
 
 <body>
     <div class="background-mesh"></div>
+    <a href="index.html" class="nav-back-corner">&larr; Home</a>
     <header>
         <div class="logo">
-            <h1>India: Curated</h1>
-            <p>The Ultimate Bucket List</p>
+            <a href="index.html" style="text-decoration: none;">
+                <h1>India: Curated</h1>
+                <p id="state-subtitle">The Ultimate Bucket List</p>
+            </a>
         </div>
         <!-- <div style="text-align: center; margin-bottom: 2rem;">
-            <a href="index.html" style="padding: 0.8rem 1.5rem; background: var(--accent-color); color: #000; font-weight: 600; text-decoration: none; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;">🗺️ Return to Interactive Map</a>
+            <a href="index.html" style="padding: 0.8rem 1.5rem; background: var(--accent-color); color: #000; font-weight: 600; text-decoration: none; border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;">🗺️ Home</a>
         </div> -->
     </header>
 
     <main>
         <div class="grid-container" id="places-grid">
             
+        <article class="place-card" data-state="Assam">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80" alt="National Parks" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">National Parks</h2>
+                <p class="card-description">Explore the amazing destinations in National Parks.</p>
+                
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/assam-national-parks.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
         <article class="place-card" data-state="Delhi">
             <div class="card-image">
                 <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="India Gate" loading="lazy">
@@ -38,12 +70,36 @@
                 <h2 class="card-title">India Gate</h2>
                 <p class="card-description">A monumental sandstone arch in New Delhi, dedicated to the troops of British India who died in wars fought between 1914 and 1919. A prominent landmark reflecting incredible national pride.</p>
                 <div class="card-note"><span>💡</span> Enjoy a leisurely walk along the Rajpath and taste street food nearby.</div>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/delhi-india-gate.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="Gujarat">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80" alt="National Parks" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">National Parks</h2>
+                <p class="card-description">Explore the amazing destinations in National Parks.</p>
                 
-                <div class="card-actions">
-                    <a href="https://maps.app.goo.gl/uP1LwVjS6d1eR1b1A" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/gujarat-national-parks.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="Madhya Pradesh">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80" alt="National Parks" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">National Parks</h2>
+                <p class="card-description">Explore the amazing destinations in National Parks.</p>
+                
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/madhya-pradesh-national-parks.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -56,12 +112,8 @@
                 <h2 class="card-title">Gateway of India</h2>
                 <p class="card-description">An iconic arch-monument built in the early 20th century in the city of Mumbai, overlooking the Arabian Sea. It is a vital symbol of India and the most famous spot in the city.</p>
                 <div class="card-note"><span>💡</span> Visit during the golden hour or at night when it's beautifully lit.</div>
-                
-                <div class="card-actions">
-                    <a href="https://maps.app.goo.gl/uYF11A4L5hJ1Kq3W8" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/maharashtra-gateway-of-india.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -74,12 +126,8 @@
                 <h2 class="card-title">Hawa Mahal</h2>
                 <p class="card-description">The Palace of Winds. A magnificent pink sandstone palace with over 900 intricately carved windows built in 1799.</p>
                 <div class="card-note"><span>💡</span> The best time to take photos is early morning when the sun hits the facade.</div>
-                
-                <div class="card-actions">
-                    <a href="https://maps.app.goo.gl/yBfQyJ2hPZQX3n2r7" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/rajasthan-hawa-mahal.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -92,9 +140,36 @@
                 <h2 class="card-title">Mahabalipuram</h2>
                 <p class="card-description">An ancient town known for its temples and monuments built by the Pallava dynasty.</p>
                 <div class="card-note"><span>💡</span> A UNESCO World Heritage site full of history, stone carvings, and beaches.</div>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/tamil-nadu-mahabalipuram.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="Uttarakhand">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80" alt="National Parks" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">National Parks</h2>
+                <p class="card-description">Explore the amazing destinations in National Parks.</p>
                 
-                <div class="card-actions">
-                    <a href="pages/tamil-nadu-mahabalipuram.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Places →</a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/uttarakhand-national-parks.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="West Bengal">
+            <div class="card-image">
+                <img src="https://www.indyatour.com/images/india/west-bengal/bakkhali-sea-beach-west-bengal.jpg" alt="Bakkhali" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Bakkhali</h2>
+                <p class="card-description">Bakkhali is a coastal town in the South 24 Parganas district of West Bengal, India. It is a popular tourist destination, known for its beautiful beaches and scenic beauty.</p>
+                <div class="card-note"><span>💡</span> Don't miss the sunrise and sunset from the beach. Also, visit the nearby Jambu Dwip island.</div>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/west-bengal-bakkhali.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -107,24 +182,36 @@
                 <h2 class="card-title">Darjeeling</h2>
                 <p class="card-description">A spectacularly picturesque hill station in the Himalayan foothills known for its sprawling tea estates.</p>
                 <div class="card-note"><span>💡</span> Widely known as the 'Queen of the Hills'.</div>
-                
-                <div class="card-actions">
-                    <a href="pages/west-bengal-darjeeling.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Places →</a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/west-bengal-darjeeling.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
     
         <article class="place-card" data-state="West Bengal">
             <div class="card-image">
-                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80" alt="Kolkata" loading="lazy">
+                <img src="assets/images/image-1.png" alt="Kolkata" loading="lazy">
             </div>
             <div class="card-content">
                 <h2 class="card-title">Kolkata</h2>
-                <p class="card-description">Explore the amazing destinations in Kolkata.</p>
+                <p class="card-description">A city of joy, Kolkata is the cultural capital of India, known for its colonial architecture, vibrant street life, and rich literary heritage.</p>
+                <div class="card-note"><span>💡</span> Widely known as the 'City of Joy'.</div>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/west-bengal-kolkata.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="West Bengal">
+            <div class="card-image">
+                <img src="assets/images/image-1.png" alt="National Parks" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">National Parks</h2>
+                <p class="card-description">West Bengal is home to several stunning national parks, each offering unique landscapes and wildlife.</p>
                 
-                
-                <div class="card-actions">
-                    <a href="pages/west-bengal-kolkata.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Places →</a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="pages/west-bengal-national-parks.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -143,6 +230,13 @@
             const urlParams = new URLSearchParams(window.location.search);
             const incomingState = urlParams.get('state');
 
+            if (incomingState && incomingState.toLowerCase() !== 'all') {
+                const subtitle = document.getElementById('state-subtitle');
+                if (subtitle) {
+                    subtitle.textContent = `Destinations in ${incomingState}`;
+                }
+            }
+
             cards.forEach(card => {
                 if (!incomingState || incomingState.toLowerCase() === 'all' || card.getAttribute('data-state').toLowerCase() === incomingState.toLowerCase()) {
                     card.style.display = 'flex';
@@ -153,6 +247,17 @@
                 }
             });
         });
+    </script>
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
     </script>
 </body>
 

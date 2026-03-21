@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India: Curated Collections</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .nav-back-corner {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            color: #8fa08e;
+            text-decoration: none;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .nav-back-corner:hover {
+            color: #d32f2f;
+        }
+
+        .curated-hero {
+            position: relative;
+            top: 100px;
+            right: 50px;
+            background: #fdfaf6;
+            border-radius: 6px;
+            padding: 1.5rem 1.5rem 1.2rem;
+            box-shadow: 10px 15px 35px rgba(0, 0, 0, 0.4);
+            text-align: left;
+            color: #212121;
+            max-width: 320px;
+            margin: 0;
+            transform: rotate(2deg);
+            z-index: 1000;
+        }
+
+        .curated-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(45deg, #d32f2f, #d32f2f 10px, #fdfaf6 10px, #fdfaf6 20px, #1976d2 20px, #1976d2 30px, #fdfaf6 30px, #fdfaf6 40px);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        .curated-hero h1 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            margin: 0 0 0.5rem 0;
+            line-height: 1;
+            color: #1a0f0c;
+        }
+
+        .curated-hero p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #444;
+            margin: 0;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        /* Use existing place-card layout for consistency */
+    </style>
+</head>
+
+<body>
+    <div class="background-mesh"></div>
+    <a href="index.html" class="nav-back-corner">&larr; Home</a>
+    <header style="padding-bottom: 0;">
+        <div class="logo">
+            <a href="index.html" style="text-decoration: none;">
+                <h1>India: Curated</h1>
+                <p>The Ultimate Bucket List</p>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- <div class="curated-hero">
+            <h1>Curated Experiences</h1>
+            <p>Choose your flavor of travel. From the deep jungles of Bengal to ancient architectural wonders scattered
+                across the subcontinent.</p>
+        </div> -->
+
+        <div class="sub-places-section" style="margin-top: 1rem;">
+            <div class="grid-container">
+
+                <article class="place-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=800"
+                            alt="National Parks" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">National Parks</h2>
+                        <p class="card-description">Explore India's rich biodiversity, home to the majestic Royal Bengal
+                            tiger and the great one-horned rhinoceros!</p>
+                        <div class="card-actions">
+                            <a href="national-parks.html" class="btn-google"
+                                style="background:var(--accent-color); color:#fff;">Explore Parks →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="place-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1544372561-5cc7137f8842?w=800"
+                            alt="Popular Treks" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Popular Treks</h2>
+                        <p class="card-description">Scale the heights of the magnificent Indian Himalayas. Discover scenic trails, snow-capped peaks, and adventurous high-altitude treks!</p>
+                        <div class="card-actions">
+                            <a href="treks.html" class="btn-google"
+                                style="background:var(--accent-color); color:#fff;">Explore Treks →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="place-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1515273523293-61b62372a758?w=800"
+                            alt="UNESCO Heritage" loading="lazy" style="filter: grayscale(80%);">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">UNESCO Heritage</h2>
+                        <p class="card-description">Journey through history and witness breathtaking architectural
+                            marvels scattered across the subcontinent. (Coming Soon)</p>
+                        <div class="card-actions">
+                            <button class="btn-google" style="opacity:0.5; cursor:not-allowed;">Explore Sites →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="place-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?w=800"
+                            alt="Spiritual Retreats" loading="lazy" style="filter: grayscale(80%);">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Spiritual Retreats</h2>
+                        <p class="card-description">Find inner peace across ancient temples, serene ashrams, and sacred
+                            pilgrimage routes. (Coming Soon)</p>
+                        <div class="card-actions">
+                            <button class="btn-google" style="opacity:0.5; cursor:not-allowed;">Explore Temples
+                                →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="place-card">
+                    <div class="card-image">
+                        <img src="assets/festival.png"
+                            alt="Festivals" loading="lazy" style="filter: grayscale(80%);">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Festivals</h2>
+                        <p class="card-description">Experience the vibrant colors and joy of India's diverse and grand festivals. (Coming Soon)</p>
+                        <div class="card-actions">
+                            <button class="btn-google" style="opacity:0.5; cursor:not-allowed;">Explore Festivals →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="place-card">
+                    <div class="card-image">
+                        <img src="assets/museum.png"
+                            alt="Museums" loading="lazy" style="filter: grayscale(80%);">
+                    </div>
+                    <div class="card-content">
+                        <h2 class="card-title">Museums</h2>
+                        <p class="card-description">Discover India's rich history through its elegant and fascinating museums. (Coming Soon)</p>
+                        <div class="card-actions">
+                            <button class="btn-google" style="opacity:0.5; cursor:not-allowed;">Explore Museums →</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Curated with ❤️ for India by Dipankar Pal.</p>
+    </footer>
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+</body>
+
+</html>

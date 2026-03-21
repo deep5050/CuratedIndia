@@ -10,12 +10,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
+    <style>
+        .nav-back-corner {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            color: #8fa08e;
+            text-decoration: none;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .nav-back-corner:hover {
+            color: #d32f2f;
+        }
+    </style>
 </head>
 
 <body>
     <div class="background-mesh"></div>
+    <a href="../index.html" class="nav-back-corner">&larr; Home</a>
     <header>
         <div class="logo">
             <a href="../index.html" style="text-decoration: none;">
@@ -37,15 +53,6 @@
                 <h1>Darjeeling</h1>
                 <p>A spectacularly picturesque hill station in the Himalayan foothills known for its sprawling tea estates.</p>
                 <div class="card-note"><span>💡</span> Widely known as the 'Queen of the Hills'.</div>
-                <div><p>Welcome to beautiful Darjeeling. It boasts sweeping views of Mt. Kanchenjunga and the world-famous Darjeeling Himalayan Railway. Here are its must-visit attractions!</p>
-</div>
-                <br>
-                <div class="card-actions" style="justify-content: flex-start;">
-                    <a href="https://maps.app.goo.gl/DarjeelingTown" target="_blank" rel="noopener noreferrer" class="btn-google">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        Directions to Darjeeling
-                    </a>
-                </div>
             </div>
         
         </div>
@@ -62,31 +69,36 @@
                 <h2 class="card-title">Batasia Loop</h2>
                 <p class="card-description">A spiral railway created to lower the gradient of ascent of the Darjeeling Himalayan Railway.</p>
                 <div class="card-note"><span>💡</span> It offers a panoramic view of Darjeeling town and snowy Mount Kanchenjunga.</div>
-                <div class="card-extra"><p>At the center of the Batasia Loop is the War Memorial for the Gorkha soldiers.</p>
-</div>
-                <div class="card-actions">
-                    <a href="https://maps.app.goo.gl/BatasiaLoop" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-batasia-loop.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
     
         <article class="place-card" data-state="West Bengal">
             <div class="card-image">
-                <img src="../assets/images/ghoom-monastry.jpg" alt="Ghoom Monastry" loading="lazy">
+                <img src="https://github.com/user-attachments/assets/90cbd9a5-e7fc-4c09-84a7-86156f682a65" alt="Ghoom Monastry" loading="lazy">
             </div>
             <div class="card-content">
                 <h2 class="card-title">Ghoom Monastry</h2>
                 <p class="card-description">Old Ghoom Monastery is the popular name of Yiga Choeling. The monastery belongs to the Gelukpa or the Yellow Hat sect and is known for its 15 feet-high statue of the Maitreya Buddha</p>
                 
-                
-                <div class="card-actions">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-ghoom-monastry.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="West Bengal">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1542152643-4eeba7894f71?w=1400&q=80" alt="Lamahatta Eco Park" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Lamahatta Eco Park</h2>
+                <p class="card-description">Lamahatta is a serene eco-tourism village located amidst vast stretches of pine forests. It features an incredibly peaceful park with colourful prayer flags fluttering in the mountain breeze.</p>
+                <div class="card-note"><span>💡</span> Take the short hike up to the sacred pond located at the top of the pine forest.</div>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-lamahatta-eco-park.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -99,12 +111,36 @@
                 <h2 class="card-title">Lepchajagat</h2>
                 <p class="card-description">Beautiful pain forest amidst the could</p>
                 <div class="card-note"><span>💡</span> Don't miss a hike to the forest, beautiful view of Tiger Hill from here</div>
-                
-                <div class="card-actions">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-lepchajagat.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="West Bengal">
+            <div class="card-image">
+                <img src="https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2021/10/14175512/Makaibari-2.jpg" alt="Makaibari Tea Estate" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Makaibari Tea Estate</h2>
+                <p class="card-description">One of the oldest and most prestigious tea estates in Darjeeling, establishing itself as the world's first tea factory. You can witness the entire process of how world-famous Darjeeling tea is grown, plucked, and processed.</p>
+                <div class="card-note"><span>💡</span> Do a tea tasting session to sample their renowned organic and biodynamic blends!</div>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-makaibari-tea-estate.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
+                </div>
+            </div>
+        </article>
+    
+        <article class="place-card" data-state="West Bengal">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1594589088656-788b1f54cfdf?w=1400&q=80" alt="Mirik Lake" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">Mirik Lake</h2>
+                <p class="card-description">Mirik is renowned for its beautiful, serene Sumendu Lake surrounded by a garden of tall dark Japanese cedars. The view of Kanchenjunga reflected in the lake's water is simply mesmerizing. </p>
+                <div class="card-note"><span>💡</span> Enjoy horseback riding and boating across the lake, or take a peaceful stroll across the arched footbridge!</div>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-mirik-lake.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -117,32 +153,22 @@
                 <h2 class="card-title">Peace Pagoda</h2>
                 <p class="card-description">A tranquil and beautiful Buddhist monument designed to provide a focus for people of all races to unite in peace.</p>
                 <div class="card-note"><span>💡</span> Provides an outstanding view of the Darjeeling landscape including Kanchenjunga.</div>
-                <div class="card-extra"><p>Consecrated in 1992, the pagoda showcases four avatars of Buddha depicted in gold polish.</p>
-</div>
-                <div class="card-actions">
-                    <a href="https://maps.app.goo.gl/PeacePagodaDj" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-peace-pagoda.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
     
         <article class="place-card" data-state="West Bengal">
             <div class="card-image">
-                <img src="../assets/images/tiger-hill.jpg" alt="Tiger Hill" loading="lazy">
+                <img src="https://github.com/user-attachments/assets/b2e51fe8-84db-4ad2-a911-38c65f310cc8" alt="Tiger Hill" loading="lazy">
             </div>
             <div class="card-content">
                 <h2 class="card-title">Tiger Hill</h2>
                 <p class="card-description">The highest point in Darjeeling offering a majestic panoramic view of Mount Everest and Mt. Kanchenjunga.</p>
                 <div class="card-note"><span>💡</span> Famous for the breathtaking sunrise views that illuminate the snowy peaks.</div>
-                <div class="card-extra"><p>Thousands converge at Tiger Hill before dawn just to experience the incredible sunrise lighting up the mountain peaks.</p>
-</div>
-                <div class="card-actions">
-                    <a href="https://maps.app.goo.gl/TigerHillSunrise" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-tiger-hill.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -154,6 +180,17 @@
     <footer>
         <p>Curated with ❤️ for India by Dipankar Pal.</p>
     </footer>
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
 </body>
 
 </html>

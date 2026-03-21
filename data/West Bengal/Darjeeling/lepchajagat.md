@@ -5,3 +5,5 @@
 Beautiful pain forest amidst the could
 
 **Note:** Don't miss a hike to the forest, beautiful view of Tiger Hill from here
+
+[Google Maps link](https://maps.app.goo.gl/m3fR2FRUp5H4qi4q7)

@@ -31,7 +31,7 @@ body {
     width: 200%;
     height: 200%;
     background: radial-gradient(circle at 50% 50%, rgba(88, 166, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(200, 100, 255, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 80% 20%, rgba(200, 100, 255, 0.05) 0%, transparent 40%);
     z-index: -1;
     pointer-events: none;
 }
@@ -53,6 +53,7 @@ header {
 }
 
 .logo p {
+    margin-top: -15px;
     color: var(--text-secondary);
     font-size: 1.1rem;
     letter-spacing: 1px;
@@ -157,7 +158,7 @@ main {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
     z-index: 2;
 }
@@ -224,6 +225,55 @@ footer {
     padding: 3rem 1rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
+}
+
+footer p,
+.creator-stamp,
+.nav-back-corner {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 16px !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+body.light-mode {
+    --bg-color: #fdfaf6;
+    --text-primary: #1a0f0c;
+    --text-secondary: #444;
+    --accent-color: #d32f2f;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --border-color: rgba(200, 200, 200, 0.8);
+    --hover-bg: rgba(211, 47, 47, 0.1);
+}
+
+.nav-back-corner {
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    color: #8fa08e;
+    text-decoration: none;
+    z-index: 1000;
+    transition: color 0.3s;
+}
+
+.nav-back-corner:hover {
+    color: #d32f2f;
+}
+
+.theme-toggle-btn {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1);
 }
 
 /* Styles for Sub-Pages / Hero */
@@ -293,6 +343,7 @@ footer {
     .place-hero {
         flex-direction: column;
     }
+
     .place-hero img {
         width: 100%;
         height: auto;

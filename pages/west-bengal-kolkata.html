@@ -10,12 +10,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@600;700&display=swap"
         rel="stylesheet">
+    <style>
+        .nav-back-corner {
+            position: fixed;
+            top: 25px;
+            left: 30px;
+            color: #8fa08e;
+            text-decoration: none;
+            z-index: 1000;
+            transition: color 0.3s;
+        }
+
+        .nav-back-corner:hover {
+            color: #d32f2f;
+        }
+    </style>
 </head>
 
 <body>
     <div class="background-mesh"></div>
+    <a href="../index.html" class="nav-back-corner">&larr; Home</a>
     <header>
         <div class="logo">
             <a href="../index.html" style="text-decoration: none;">
@@ -32,19 +48,11 @@
     <main>
         <div class="place-hero">
             
-            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80" alt="Kolkata" loading="lazy">
+            <img src="../assets/images/image-1.png" alt="Kolkata" loading="lazy">
             <div class="hero-content">
                 <h1>Kolkata</h1>
-                <p>Explore the amazing destinations in Kolkata.</p>
-                
-                
-                <br>
-                <div class="card-actions" style="justify-content: flex-start;">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn-google">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        Directions to Kolkata
-                    </a>
-                </div>
+                <p>A city of joy, Kolkata is the cultural capital of India, known for its colonial architecture, vibrant street life, and rich literary heritage.</p>
+                <div class="card-note"><span>💡</span> Widely known as the 'City of Joy'.</div>
             </div>
         
         </div>
@@ -61,13 +69,8 @@
                 <h2 class="card-title">Victoria Memorial</h2>
                 <p class="card-description">A large marble building in Kolkata, West Bengal, India, which was built between 1906 and 1921.</p>
                 <div class="card-note"><span>💡</span> It is dedicated to the memory of Queen Victoria. Beautiful to visit in the evening.</div>
-                <div class="card-extra"><p>It is now a museum and tourist destination under the Ministry of Culture.</p>
-</div>
-                <div class="card-actions">
-                    <a href="https://maps.app.goo.gl/victoria-memorial" target="_blank" rel="noopener noreferrer" class="btn-google">
-               <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-               View on Map
-           </a>
+                <div class="card-actions" style="margin-top: 1rem;">
+                    <a href="west-bengal-victoria-memorial.html" class="btn-google" style="background:var(--accent-color); color:#fff;">Explore Details →</a>
                 </div>
             </div>
         </article>
@@ -79,6 +82,17 @@
     <footer>
         <p>Curated with ❤️ for India by Dipankar Pal.</p>
     </footer>
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
 </body>
 
 </html>

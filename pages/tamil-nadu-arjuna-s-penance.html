@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjuna's Penance | See My India</title>
+    <link rel="stylesheet" href="../src/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="decorative-ribbon"></div>
+    <div class="background-mesh"></div>
+    <a href="../places.html" class="nav-back-corner" onclick="window.history.back(); return false;">&larr; Go Back</a>
+    <header>
+        <div class="logo">
+            <a href="../index.html" style="text-decoration: none;">
+                <h1>India: Curated</h1>
+                <p>The Ultimate Bucket List</p>
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="place-hero">
+            
+        <img src="https://images.unsplash.com/photo-1610408544837-9b2fdfde8115" alt="Arjuna's Penance" loading="lazy">
+        <div class="hero-content">
+            <h1>Arjuna's Penance</h1>
+            <p style="font-size: 1.15rem; color: #ddd; margin-bottom: 2rem;">A gigantic open-air rock relief carved on two monolithic rock boulders.</p>
+            <div class="card-note"><span>💡</span> One of the largest open-air rock reliefs in the world.</div>
+            <div style="font-size: 1.05rem; line-height: 1.7; color: #e6edf3; margin-top: 1.5rem; border-top: 1px dotted rgba(255,255,255,0.1); padding-top: 1.5rem;"><p>Depicts scenes from the Hindu epic Mahabharata.</p>
+</div>
+            <br>
+            <div class="card-actions" style="justify-content: flex-start; margin-top: 1rem;">
+                <a href="https://maps.app.goo.gl/ArjunasPenance" target="_blank" rel="noopener noreferrer" class="btn-google">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    View Arjuna's Penance on Google Maps
+                </a>
+            </div>
+        </div>
+    
+        </div>
+    </main>
+    <footer>
+        <p>Curated with ❤️ for India by Dipankar Pal.</p>
+    </footer>
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+</body>
+</html>

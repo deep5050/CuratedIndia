@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victoria Memorial | See My India</title>
+    <link rel="stylesheet" href="../src/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="decorative-ribbon"></div>
+    <div class="background-mesh"></div>
+    <a href="../places.html" class="nav-back-corner" onclick="window.history.back(); return false;">&larr; Go Back</a>
+    <header>
+        <div class="logo">
+            <a href="../index.html" style="text-decoration: none;">
+                <h1>India: Curated</h1>
+                <p>The Ultimate Bucket List</p>
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="place-hero">
+            
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Victoria_Memorial_-_Kolkata.jpg" alt="Victoria Memorial" loading="lazy">
+        <div class="hero-content">
+            <h1>Victoria Memorial</h1>
+            <p style="font-size: 1.15rem; color: #ddd; margin-bottom: 2rem;">A large marble building in Kolkata, West Bengal, India, which was built between 1906 and 1921.</p>
+            <div class="card-note"><span>💡</span> It is dedicated to the memory of Queen Victoria. Beautiful to visit in the evening.</div>
+            
+            <br>
+            <div class="card-actions" style="justify-content: flex-start; margin-top: 1rem;">
+                <a href="https://maps.app.goo.gl/victoria-memorial" target="_blank" rel="noopener noreferrer" class="btn-google">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    View Victoria Memorial on Google Maps
+                </a>
+            </div>
+        </div>
+    
+        </div>
+    </main>
+    <footer>
+        <p>Curated with ❤️ for India by Dipankar Pal.</p>
+    </footer>
+    <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        });
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
+</body>
+</html>
