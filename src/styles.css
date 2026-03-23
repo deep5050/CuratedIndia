@@ -237,13 +237,13 @@ footer p,
 }
 
 body.light-mode {
-    --bg-color: #fdfaf6;
-    --text-primary: #1a0f0c;
-    --text-secondary: #444;
-    --accent-color: #d32f2f;
+    --bg-color: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-color: #2563eb;
     --card-bg: rgba(255, 255, 255, 0.9);
-    --border-color: rgba(200, 200, 200, 0.8);
-    --hover-bg: rgba(211, 47, 47, 0.1);
+    --border-color: rgba(203, 213, 225, 0.8);
+    --hover-bg: rgba(37, 99, 235, 0.08);
 }
 
 .nav-back-corner {
@@ -262,18 +262,31 @@ body.light-mode {
 
 .theme-toggle-btn {
     position: fixed;
-    top: 25px;
+    top: 20px;
     right: 30px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
+    background: rgba(128, 128, 128, 0.15);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
     cursor: pointer;
     z-index: 1000;
-    transition: transform 0.3s;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .theme-toggle-btn:hover {
-    transform: scale(1.1);
+    transform: translateY(-3px) scale(1.05);
+    background: var(--hover-bg);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 /* Styles for Sub-Pages / Hero */

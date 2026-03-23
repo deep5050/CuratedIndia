@@ -6,112 +6,205 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>India: Popular Treks</title>
     <link rel="stylesheet" href="src/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
     <style>
         body {
-            background: var(--bg-color);
+            height: 100vh;
+            overflow: hidden;
             margin: 0;
             padding: 0;
+            background: var(--bg-color);
             font-family: 'Inter', sans-serif;
-            color: var(--text-primary);
         }
 
-        .nav-back-corner {
+        #line-svg {
             position: fixed;
-            top: 25px;
-            left: 30px;
-            color: #8fa08e;
-            text-decoration: none;
-            z-index: 1000;
-            transition: color 0.3s;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
         }
 
-        .nav-back-corner:hover {
-            color: #d32f2f;
-        }
-
-        header.hero {
-            padding: 5rem 2rem 2rem;
-            text-align: center;
-        }
-
-        header.hero h1 {
-            font-size: 3.5rem;
-            color: var(--text-primary);
-            font-weight: 800;
-            margin: 0;
-            letter-spacing: -1px;
-        }
-
-        header.hero p {
-            max-width: 600px;
-            margin: 1rem auto;
-            font-family: 'Caveat', cursive;
-            font-size: 1.8rem;
-            color: #d32f2f;
-        }
-
-        .treks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
+        .map-layout {
+            display: flex;
+            width: 100%;
+            height: 100%;
             padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-        }
-
-        .trek-card {
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            z-index: 10;
             position: relative;
         }
 
-        .trek-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        @media (max-width: 1024px) {
+            body {
+                height: auto;
+                overflow: auto;
+                min-height: 100vh;
+            }
+
+            .map-layout {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .map-container svg {
+                height: auto !important;
+                width: 100% !important;
+                max-height: 60vh;
+            }
+
+            .info-section {
+                text-align: center !important;
+                flex: auto !important;
+                padding: 0 !important;
+            }
+
+            .postcard {
+                transform: none !important;
+                padding: 2rem !important;
+            }
         }
 
-        body.light-mode .trek-card {
-            background: #fdfaf6;
-        }
-        body:not(.light-mode) .trek-card {
-            background: #1e1e1e;
+        .map-section {
+            flex: 1 1 55%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
         }
 
-        .trek-image {
+        .map-container {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            max-height: 90vh;
+            display: flex;
+            justify-content: flex-end;
         }
 
-        .trek-content {
-            padding: 1.5rem;
+        .map-container svg {
+            height: 85vh;
+            width: auto;
+            max-width: 100%;
+            filter: drop-shadow(0px 15px 35px rgba(0, 0, 0, 0.8));
         }
 
-        .trek-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin: 0 0 0.5rem 0;
+        .info-section {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            perspective: 1000px;
+        }
+
+        .postcard {
+            border-radius: 6px;
+            padding: 1.2rem;
+            box-shadow: 15px 25px 50px rgba(0, 0, 0, 0.7);
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+            transform: rotate(3deg);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #212121;
+        }
+
+        body:not(.light-mode) .postcard {
+            background: var(--card-bg);
             color: var(--text-primary);
         }
 
-        .trek-state {
-            font-size: 0.9rem;
-            color: #8fa08e;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            font-weight: 600;
+        body.light-mode .postcard {
+            background: #fdfaf6;
+            color: #212121;
         }
 
-        .trek-desc {
+        .postcard:hover {
+            transform: rotate(0deg) translateY(-8px);
+            box-shadow: 15px 35px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .postcard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: repeating-linear-gradient(45deg, #d32f2f, #d32f2f 15px, #fdfaf6 15px, #fdfaf6 30px, #1976d2 30px, #1976d2 45px, #fdfaf6 45px, #fdfaf6 60px);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+        }
+
+        /* Map styling */
+        .map-container svg path {
+            fill: rgba(255, 240, 212, 0.08);
+            stroke: var(--accent-color);
+            stroke-width: 0.8px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .map-container svg path:hover {
+            fill: var(--accent-color);
+            stroke-width: 1.5px;
+            filter: drop-shadow(0 0 10px rgba(255, 153, 51, 0.6));
+            outline: none;
+        }
+
+        #tooltip {
+            display: none;
+            position: fixed;
+            background: rgba(26, 15, 12, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 100;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #e6edf3;
+            border: 1px solid rgba(255, 153, 51, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
+        }
+
+        .nav-button {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            background: var(--accent-color);
+            color: #1a0f0c !important;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 153, 51, 0.4);
+            font-weight: 800;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .nav-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 153, 51, 0.6);
+            background: var(--accent-color);
+            color: #1a0f0c !important;
         }
 
         .altitude-section {
@@ -120,6 +213,7 @@
             gap: 1.5rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(128, 128, 128, 0.2);
+            margin-bottom: 1.5rem;
         }
 
         .altitude-info {
@@ -145,98 +239,199 @@
             height: 60px;
             color: var(--text-secondary);
         }
-
-        .theme-toggle-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1000;
-            padding: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
-        
     </style>
 </head>
 
 <body>
     <div class="background-mesh"></div>
-    <a href="curated.html" class="nav-back-corner">&larr; Curated</a>
-    
-    <header class="hero">
-        <h1>Popular Treks</h1>
-        <p>Scale the heights of the magnificent Indian Himalayas</p>
-    </header>
+    <div id="tooltip"></div>
 
-    <main>
-        <div class="treks-grid" id="treks-container">
-            <!-- Cards will be injected here -->
+    <svg id="line-svg">
+        <line id="target-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--accent-color)" stroke-width="2"
+            stroke-dasharray="6,6"></line>
+        <circle id="target-dot" cx="0" cy="0" r="6" fill="var(--accent-color)"></circle>
+    </svg>
+
+    <div class="map-layout">
+        <div class="map-section">
+            <div class="map-container">
+                {{MAP_SVG}}
+            </div>
         </div>
-    </main>
+        <div class="info-section">
+            <div class="postcard">
+                <header id="trek-card"
+                    style="text-align: left; padding: 0; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
+                    <div>
+                        <p class="subtitle" id="trek-state"
+                            style="font-size: 1.2rem; color: #8fa08e; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
+                            State Name</p>
+                        <div class="logo">
+                            <h1 id="trek-name"
+                                style="font-size: 2.4rem; margin-bottom: 1.2rem; font-family: 'Playfair Display', serif; font-weight: 900; line-height: 1;">
+                                Trek Name</h1>
+                        </div>
+
+                        <img id="trek-img" src="" alt="Trek Image"
+                            style="width:100%; height: 280px; object-fit: cover; border-radius: 6px; margin-bottom: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+                        <div style="flex-grow: 1; min-height: 6.4em;">
+                            <p id="trek-desc"
+                                style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                Description
+                            </p>
+                        </div>
+
+                        <div class="altitude-section" id="altitude-block">
+                            <!-- SVG injected by JS -->
+                        </div>
+                    </div>
+
+                    <div
+                        style="display:flex; justify-content:space-between; align-items: center; margin-top: auto; border-top: 1px solid rgba(128, 128, 128, 0.2); padding-top: 1.2rem;">
+                        <button id="btn-prev" class="nav-button">&larr;</button>
+                        <span id="page-num"
+                            style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-primary);">1
+                            / N</span>
+                        <button id="btn-next" class="nav-button">&rarr;</button>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </div>
+
+    <a href="curated.html" class="nav-back-corner">&larr; Curated</a>
 
     <button id="theme-toggle" class="theme-toggle-btn">🌓</button>
 
     <script>
-        const treks = {{TREKS_JSON}};
-        const container = document.getElementById('treks-container');
+        const treks = {{ TREKS_JSON }};
+        let curIdx = 0;
         const MAX_ALTITUDE = 6000;
 
-        function renderTreks() {
-            container.innerHTML = treks.map(trek => {
-                const clipId = 'clip-' + trek.name.replace(/[^a-zA-Z0-9]/g, '');
-                const maxH = 70;
-                const h = Math.min((trek.altitude / MAX_ALTITUDE) * maxH, maxH);
-                const y = 90 - h;
-                
-                return `
-                <article class="trek-card">
-                    <img src="${trek.image}" alt="${trek.name}" class="trek-image" loading="lazy">
-                    <div class="trek-content">
-                        <h2 class="trek-title">${trek.name}</h2>
-                        <div class="trek-state">${trek.state}</div>
-                        <p class="trek-desc">${trek.desc}</p>
-                        <div class="altitude-section">
-                            <svg class="mountain-svg" viewBox="0 0 100 100">
-                                <defs>
-                                    <clipPath id="${clipId}">
-                                        <rect x="0" y="${y}" width="100" height="${h}" />
-                                    </clipPath>
-                                </defs>
-                                <!-- Background mountain -->
-                                <path d="M 10 90 L 50 20 L 90 90 Z" fill="rgba(128,128,128,0.15)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-                                <!-- Filled mountain based on altitude -->
-                                <path d="M 10 90 L 50 20 L 90 90 Z" fill="var(--accent-color)" clip-path="url(#${clipId})"/>
-                                <!-- Snow cap pattern (decorative) -->
-                                <path d="M 50 20 L 40 34 L 45 38 L 50 32 L 55 38 L 60 34 Z" fill="#fff" opacity="0.9" />
-                            </svg>
-                            <div class="altitude-info">
-                                <div class="altitude-val">${trek.altitude}m</div>
-                                <div class="altitude-label">Max Altitude</div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                `;
-            }).join('');
+        function updateCard() {
+            if (!treks || treks.length === 0) return;
+            const t = treks[curIdx];
+            document.getElementById('trek-name').innerText = t.name;
+            document.getElementById('trek-state').innerText = t.state;
+            document.getElementById('trek-img').src = t.image;
+            document.getElementById('trek-desc').textContent = t.description; // Changed from t.desc to t.description
+            document.getElementById('page-num').innerText = (curIdx + 1) + ' / ' + treks.length;
+
+            const clipId = 'clip-' + t.name.replace(/[^a-zA-Z0-9]/g, '');
+            const maxH = 70;
+            const h = Math.min((t.altitude / MAX_ALTITUDE) * maxH, maxH);
+            const y = 90 - h;
+
+            const altitudeHtml = `
+                <svg class="mountain-svg" viewBox="0 0 100 100">
+                    <defs>
+                        <clipPath id="${clipId}">
+                            <rect x="0" y="${y}" width="100" height="${h}" />
+                        </clipPath>
+                    </defs>
+                    <path d="M 10 90 L 50 20 L 90 90 Z" fill="rgba(128,128,128,0.15)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M 10 90 L 50 20 L 90 90 Z" fill="var(--accent-color)" clip-path="url(#${clipId})"/>
+                    <path d="M 50 20 L 40 34 L 45 38 L 50 32 L 55 38 L 60 34 Z" fill="#fff" opacity="0.9" />
+                </svg>
+                <div class="altitude-info">
+                    <div class="altitude-val" id="trek-altitude">${t.altitude ? `${t.altitude} m` : 'N/A'}</div>
+                    <div class="altitude-label">Max Altitude</div>
+                </div>
+                <div class="altitude-info">
+                    <div class="altitude-val" id="trek-difficulty" style="font-size: 1.1rem; color: #1a0f0c; background: var(--accent-color); padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block;">${t.difficulty || 'Moderate'}</div>
+                    <div class="altitude-label">Difficulty</div>
+                </div>
+            `;
+            document.getElementById('altitude-block').innerHTML = altitudeHtml;
+
+            // Highlight map & Draw line
+            document.querySelectorAll('.map-container svg path').forEach(path => {
+                path.style.fill = 'rgba(255, 240, 212, 0.08)';
+                path.style.strokeWidth = '0.8px';
+            });
+            const targetPath = document.querySelector(`.map-container svg path[name="${t.state}"]`) ||
+                document.querySelector(`.map-container svg path[aria-label="${t.state}"]`);
+            if (targetPath) {
+                targetPath.style.fill = 'var(--accent-color)';
+                targetPath.style.strokeWidth = '2px';
+
+                // Draw line from card to state center
+                // Delay slightly to ensure layout repaints
+                setTimeout(() => {
+                    const cardRect = document.querySelector('.postcard').getBoundingClientRect();
+                    const pathRect = targetPath.getBoundingClientRect();
+
+                    const startX = cardRect.left;
+                    const startY = cardRect.top + (cardRect.height / 2);
+                    const endX = pathRect.left + (pathRect.width / 2);
+                    const endY = pathRect.top + (pathRect.height / 2);
+
+                    const line = document.getElementById('target-line');
+                    const dot = document.getElementById('target-dot');
+
+                    line.setAttribute('x1', startX);
+                    line.setAttribute('y1', startY);
+                    line.setAttribute('x2', endX);
+                    line.setAttribute('y2', endY);
+                    dot.setAttribute('cx', endX);
+                    dot.setAttribute('cy', endY);
+                }, 50);
+            } else {
+                // Clear line if state not found
+                const line = document.getElementById('target-line');
+                const dot = document.getElementById('target-dot');
+                line.setAttribute('x1', 0); line.setAttribute('y1', 0); line.setAttribute('x2', 0); line.setAttribute('y2', 0);
+                dot.setAttribute('cx', 0); dot.setAttribute('cy', 0);
+            }
         }
 
-        renderTreks();
+        document.getElementById('btn-prev').addEventListener('click', () => {
+            curIdx = (curIdx - 1 + treks.length) % treks.length;
+            updateCard();
+        });
 
-        // Theme toggle logic
+        document.getElementById('btn-next').addEventListener('click', () => {
+            curIdx = (curIdx + 1) % treks.length;
+            updateCard();
+        });
+
+        // Tooltip logic for hovering over states
+        document.querySelectorAll('.map-container svg path').forEach(path => {
+            const stateName = path.getAttribute('name') || path.getAttribute('aria-label');
+            path.addEventListener('mousemove', (e) => {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'block';
+                tooltip.style.left = (e.clientX + 15) + 'px';
+                tooltip.style.top = (e.clientY + 15) + 'px';
+                tooltip.innerHTML = `${stateName}`;
+            });
+            path.addEventListener('mouseleave', () => {
+                document.getElementById('tooltip').style.display = 'none';
+            });
+            path.addEventListener('click', () => {
+                // If user clicks a state, try jumping to the first trek in that state
+                const idx = treks.findIndex(t => t.state === stateName);
+                if (idx !== -1) {
+                    curIdx = idx;
+                    updateCard();
+                }
+            });
+        });
+
+        window.addEventListener('load', () => updateCard());
+        window.addEventListener('resize', () => updateCard());
+
+        // Theme toggle logic EXACTLY matching curated implementation
         const themeBtn = document.getElementById('theme-toggle');
-        const toggleTheme = () => {
+        themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        };
-        themeBtn.addEventListener('click', toggleTheme);
+        });
         if (localStorage.getItem('theme') === 'light') {
             document.body.classList.add('light-mode');
         }
     </script>
 </body>
+
 </html>

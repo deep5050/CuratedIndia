@@ -68,7 +68,7 @@ function parsePlaceFromPath(filePath, state, explicitName = null) {
 
     // Choose frontmatter over extracted markdown if frontmatter exists
     const finalName = placeData.name || extName || explicitName || path.basename(filePath, '.md');
-    const finalImage = placeData.image || extImage || 'https://github.com/user-attachments/assets/c830e493-64a1-4196-97e4-906d6df908f5';
+    const finalImage = placeData.image || extImage || 'assets/no-image-symbol.jpg';
     const finalDesc = placeData.description || extDesc || 'No description provided.';
     const finalNote = placeData.note || extNote || '';
     const finalLink = placeData.google_link || extLink || '#';
@@ -95,10 +95,14 @@ function parsePlaceFromPath(filePath, state, explicitName = null) {
         description: finalDesc,
         note: finalNote,
         google_link: finalLink,
-        bodyHtml: markdownBody
+        bodyHtml: markdownBody,
+        altitude: placeData.altitude || 0,
+        difficulty: placeData.difficulty || 'Moderate'
     };
 }
 const stateFolders = fs.readdirSync(dataDir).filter(f => fs.statSync(path.join(dataDir, f)).isDirectory());
+
+const popularTreks = []; // new global array for treks
 
 stateFolders.forEach(state => {
     states.push(state);
@@ -117,6 +121,14 @@ stateFolders.forEach(state => {
                     const np = parsePlaceFromPath(path.join(itemPath, subItem), state);
                     np.isFolder = false;
                     nationalParks.push(np);
+                });
+            } else if (item === 'Treks') {
+                const subItems = fs.readdirSync(itemPath).filter(f => f.endsWith('.md'));
+                subItems.forEach(subItem => {
+                    if (subItem === 'index.md') return;
+                    const tk = parsePlaceFromPath(path.join(itemPath, subItem), state);
+                    tk.isFolder = false;
+                    popularTreks.push(tk);
                 });
             }
             // It's a Place folder with sub-places!
@@ -226,7 +238,7 @@ allPlaces.forEach(place => {
 
         fs.writeFileSync(path.join(pagesDir, `${place.slug}.html`), localHtml);
         console.log(`📁 Generated folder overview: ${place.slug}.html`);
-        
+
         // Also physically generate individual pages for subPlaces
         place.subPlaces.forEach(sp => generateIndividualPage(sp));
     } else {
@@ -296,14 +308,5 @@ console.log('✨ Successfully generated curated.html!');
 
 // BUILD TREKS
 const treksTemplate = fs.readFileSync('src/treks-template.html', 'utf8');
-const popularTreks = [
-    { name: "Roopkund Trek", state: "Uttarakhand", image: "https://images.unsplash.com/photo-1615554851411-bdc2c62c2f42?w=800", desc: "Famous for the mysterious skeletal remains found at the glacial lake.", altitude: 5029 },
-    { name: "Kedarkantha Trek", state: "Uttarakhand", image: "https://images.unsplash.com/photo-1544372561-5cc7137f8842?w=800", desc: "A classic winter trek with magnificent views of Himalayan peaks.", altitude: 3810 },
-    { name: "Chadar Trek", state: "Ladakh", image: "https://images.unsplash.com/photo-1613536293931-64d1f271acfa?w=800", desc: "A thrilling winter trek over the frozen Zanskar River.", altitude: 3390 },
-    { name: "Valley of Flowers", state: "Uttarakhand", image: "https://images.unsplash.com/photo-1628126235206-5260b9ea6441?w=800", desc: "A colorful valley with hundreds of species of wildflowers.", altitude: 4329 },
-    { name: "Sandakphu Trek", state: "West Bengal", image: "https://images.unsplash.com/photo-1588614601111-e6fb3d4b65e2?w=800", desc: "Offers stunning views of four of the world's five highest peaks.", altitude: 3636 },
-    { name: "Goechala Trek", state: "Sikkim", image: "https://images.unsplash.com/photo-1621648039121-1798e4f51457?w=800", desc: "Breathtaking views of Mt. Kanchenjunga.", altitude: 4940 },
-    { name: "Hampta Pass Trek", state: "Himachal Pradesh", image: "https://images.unsplash.com/photo-1596765796068-07db1855a822?w=800", desc: "A dramatic crossover from lush Kullu valley to arid Lahaul.", altitude: 4270 }
-];
-fs.writeFileSync('treks.html', treksTemplate.replace(/{{\s*TREKS_JSON\s*}}/g, JSON.stringify(popularTreks)));
+fs.writeFileSync('treks.html', treksTemplate.replace(/{{\s*MAP_SVG\s*}}/g, svgMap).replace(/{{\s*TREKS_JSON\s*}}/g, JSON.stringify(popularTreks)));
 console.log('⛰️ Successfully generated treks.html!');
