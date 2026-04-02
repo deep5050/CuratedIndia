@@ -1,6 +1,7 @@
 # Varadharaja Perumal Temple
 
-<img width="201" height="251" alt="image" src="https://github.com/user-attachments/assets/18791199-ab18-4c1a-b78c-9fbd71db4cad" />
+<img width="1024" height="768" alt="image" src="https://github.com/user-attachments/assets/fbe392a1-4c84-4a25-8025-ceb76e458e8b" />
+
 
 The Varadharaja Perumal Temple, also known as Hastagiri or Attiyuran, is one of the most sacred Vaishnavite shrines in India. Dedicated to Lord Vishnu, it is one of the 108 Divya Desams and forms the "Mumurtivasam" alongside the Kamakshi Amman and Ekambareswarar temples.
 
