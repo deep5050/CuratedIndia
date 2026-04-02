@@ -1,6 +1,5 @@
 # Shore Temple
 
-![Shore Temple](https://plus.unsplash.com/premium_photo-1697729600122-eb1fe3588df8)
 
 A gorgeous temple overlooking the shore of the Bay of Bengal.
 

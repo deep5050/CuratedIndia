@@ -1,6 +1,5 @@
 # Mahabalipuram
 
-![Mahabalipuram](https://images.unsplash.com/photo-1590483256073-4bdac2613ce9)
 
 An ancient town known for its temples and monuments built by the Pallava dynasty.
 

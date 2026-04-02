@@ -1,6 +1,5 @@
 # Ekambareswarar Temple
 
-![Ekambareswarar Temple](https://images.unsplash.com/photo-1600080649756-32d88bb5d70f)
 
 One of the Pancha Bhoota Stalas, representing the element Earth (Prithvi).
 

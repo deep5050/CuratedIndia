@@ -1,6 +1,5 @@
 # Pancha Rathas
 
-![Pancha Rathas](https://images.unsplash.com/photo-1610408544837-9b2fdfde8115)
 
 A monument complex known as the Five Chariots, carved out of a single rock.
 
