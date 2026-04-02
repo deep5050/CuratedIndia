@@ -49,6 +49,10 @@ function parsePlaceFromPath(filePath, state, explicitName = null) {
         for (const token of tokenList) {
             if (token.type === 'heading' && token.depth === 1 && !extName) extName = token.text;
             if (token.type === 'image' && !extImage) extImage = token.href;
+            if (token.type === 'html' && !extImage) {
+                const match = token.text.match(/<img[^>]+src=["']([^"']+)["']/i);
+                if (match) extImage = match[1];
+            }
             if (token.type === 'link' && !extLink && (token.text.toLowerCase().includes('google maps link') || token.href.includes('maps') || token.href.includes('goo.gl'))) extLink = token.href;
 
             if (token.type === 'paragraph') {
@@ -76,7 +80,10 @@ function parsePlaceFromPath(filePath, state, explicitName = null) {
     // Clean up the markdown body so we don't duplicate the h1 and image in the UI hero
     let cleanedContent = parsedContext.content || '';
     if (extName) cleanedContent = cleanedContent.replace(new RegExp(`^#\\s+${extName.replace(/[.*+?^$\\{\\}()|[\\]\\\\]/g, '\\$&')}\\s*$`, 'm'), '');
-    if (extImage) cleanedContent = cleanedContent.replace(/!\[.*?\]\(.*?\)/, '');
+    if (extImage) {
+        cleanedContent = cleanedContent.replace(/!\[.*?\]\(.*?\)/, '');
+        cleanedContent = cleanedContent.replace(/<\s*img[^>]+>/i, '');
+    }
     if (extNote) cleanedContent = cleanedContent.replace(/^\*?\*?Note:\*?\*?\s*.*$/mi, '');
     if (extDesc) cleanedContent = cleanedContent.replace(extDesc, ''); // Simplistic removal
     if (extLink) cleanedContent = cleanedContent.replace(/\[.*?Google Maps link.*?\]\(.*?\)/i, '');

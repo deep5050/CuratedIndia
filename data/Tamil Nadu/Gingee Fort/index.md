@@ -1,6 +1,5 @@
 # Gingee Fort
 
-![Gingee Fort](https://images.unsplash.com/photo-1584824555026-6ae28e2ad3b0)
 
 Known as the "Troy of the East", Gingee Fort is a massive, historic fortification complex.
 
